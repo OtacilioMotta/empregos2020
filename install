@@ -1,0 +1,13 @@
+!pip install bs4
+!pip install unidecode
+!pip install pandas
+!pip install openpyxl
+
+from bs4 import BeautifulSoup
+from unidecode import unidecode
+import requests
+import pandas as pd
+import numpy as np
+import re
+from functools import reduce
+from math import floor
