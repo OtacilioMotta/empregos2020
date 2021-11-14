@@ -1,3 +1,6 @@
+# Necessary things to the script 
+# Make sure you have it 
+
 !pip install bs4
 !pip install unidecode
 !pip install pandas
