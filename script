@@ -1,0 +1,19 @@
+# Declaração das variáveis contendo as URL a serem acessadas para extração de dados
+URL_CONTRATACOES = "https://g1.globo.com/economia/concursos-e-emprego/noticia/2020/10/30/veja-cargos-que-tiveram-maior-alta-em-vagas-de-emprego-entre-marco-e-setembro.ghtml"
+URL_SALARIO = "https://g1.globo.com/economia/concursos-e-emprego/noticia/2021/02/03/veja-lista-das-ocupacoes-com-os-100-maiores-e-menores-salarios-de-contratacao-no-pais-em-2020.ghtml"
+
+# Acesso das páginas URL acima e salvamento dos seus conteúdos em novas variáveis
+html_contratacoes = requests.get(URL_CONTRATACOES).text
+html_salario = requests.get(URL_SALARIO).text
+
+# Criação de objetos soup com os conteúdos HTML
+soup_contratacoes = BeautifulSoup(html_contratacoes, "html.parser")
+soup_salario = BeautifulSoup(html_salario, "html.parser")
+
+# Procura em cada objeto Soup por imagens (tag <img/>)
+# Como elas são identificadas por suas classes, isso se torna um filtro na busca
+lista_tabelas_contratacoes = soup_contratacoes.find_all("img", {"class": "src"})
+lista_tabelas_salario = soup_salario.find_all("img", {"class": "src"})
+
+# print(f"Número de imagens em {URL_CONTRATACOES}: (lista_imagens_contratacoes)")
+# print(f"Número de imagens em {URL_SALARIO}: len{(lista_imagens_salario)")
