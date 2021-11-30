@@ -5,6 +5,7 @@
 !pip install unidecode
 !pip install pandas
 !pip install openpyxl
+!pip install BeautifulSoup4
 
 from bs4 import BeautifulSoup
 from unidecode import unidecode
@@ -14,3 +15,4 @@ import numpy as np
 import re
 from functools import reduce
 from math import floor
+from urllib.request import urlopen
