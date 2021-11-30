@@ -1,19 +1,27 @@
 # Declaração das variáveis contendo as URL a serem acessadas para extração de dados
-URL_CONTRATACOES = "https://g1.globo.com/economia/concursos-e-emprego/noticia/2020/10/30/veja-cargos-que-tiveram-maior-alta-em-vagas-de-emprego-entre-marco-e-setembro.ghtml"
+URL_CARGOS = "https://g1.globo.com/economia/concursos-e-emprego/noticia/2020/10/30/veja-cargos-que-tiveram-maior-alta-em-vagas-de-emprego-entre-marco-e-setembro.ghtml"
 URL_SALARIO = "https://g1.globo.com/economia/concursos-e-emprego/noticia/2021/02/03/veja-lista-das-ocupacoes-com-os-100-maiores-e-menores-salarios-de-contratacao-no-pais-em-2020.ghtml"
+URL_CONTRATACOES = "https://querobolsa.com.br/revista/profissionais-mais-contratados-em-2020-no-brasil"
 
 # Acesso das páginas URL acima e salvamento dos seus conteúdos em novas variáveis
-html_contratacoes = requests.get(URL_CONTRATACOES).text
+html_cargos = requests.get(URL_CARGOS).text
 html_salario = requests.get(URL_SALARIO).text
+html_contratacoes = requests.get(URL_CONTRATACOES).text
 
 # Criação de objetos soup com os conteúdos HTML
-soup_contratacoes = BeautifulSoup(html_contratacoes, "html.parser")
+soup_cargos = BeautifulSoup(html_cargos, "html.parser")
 soup_salario = BeautifulSoup(html_salario, "html.parser")
+soup_contratacoes = BeautifulSoup(html_contratacoes, "html.parser")
 
 # Procura em cada objeto Soup por imagens (tag <img/>)
 # Como elas são identificadas por suas classes, isso se torna um filtro na busca
-lista_tabelas_contratacoes = soup_contratacoes.find_all("img", {"class": "src"})
-lista_tabelas_salario = soup_salario.find_all("img", {"class": "src"})
+lista_tabelas_cargos = soup_cargos.find_all("div", {"class": "content-media-container"}).find_all("figure")
+lista_tabelas_salario = soup_salario.find_all("img")
+lista_tabelas_contratacoes = soup_contratacoes.find_all("img")
 
-# print(f"Número de imagens em {URL_CONTRATACOES}: (lista_imagens_contratacoes)")
-# print(f"Número de imagens em {URL_SALARIO}: len{(lista_imagens_salario)")
+##testes##
+#for image in lista_tabelas_cargos:
+  #print(image)
+#print(f"Número de imagens em {URL_CARGOS}: {len(lista_tabelas_cargos)}")
+#print(f"Número de imagens em {URL_SALARIO}: {len(lista_tabelas_salario)}")
+#print(f"Número de imagens em {URL_CONTRATACOES}: {len(lista_tabelas_contratacoes)}")
